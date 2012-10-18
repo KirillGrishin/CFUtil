@@ -3,7 +3,7 @@
 	public boolean function Every(required array array, required function predFunc)
 	description = "Returns true if all elements of array satisfy the predicate function or array is empty, false otherwise."
 	{
-		for (item in array) {
+		for (var item in array) {
 			if (! predFunc(item)) return false;
 		}
 		return true;
