@@ -6,6 +6,7 @@
 		this.String = new core.String();
 		this.Object = new core.Object();
 		this.Html = new core.Html();
+		this.String = new core.String();
 	}
 
 }
