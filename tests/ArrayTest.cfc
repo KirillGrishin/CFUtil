@@ -21,6 +21,28 @@
 
 	}
 
+	public void function SomeTest() {
+
+		var testArray = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+		var moreThanTewnty = function(numeric item) {
+			return item > 20;
+		};
+
+		var equalToFive = function(numeric item) {
+			return item == 5;
+		};
+
+		var lessThenZero = function(numeric item) {
+			return item < 0;
+		};
+
+		assertEquals( false, variables.Array.Some(testArray,moreThanTewnty, "The result for moreThanTewnty must be false") );
+		assertEquals( true, variables.Array.Some(testArray,equalToFive), "The result for equalToFive must be true" );
+		assertEquals( false, variables.Array.Some(testArray,lessThenZero, "The result for lessThenZero must be false") );
+
+	}
+
 	public void function MapTest() {
 		//variables.Array.Map()
 
