@@ -23,6 +23,34 @@
 		return result;
 	}
 
+	public array function GroupBy(required array array, required function grouppingFunc)
+	description = "Groups elements of an array into by some function and returns an array 
+	of structs where with 'key' key been a value by witch it is groupped and 'values' key been a 
+	an array of elements from original array that satisfy the grouppingFunc; the comparison of keys 
+	is done with == operator;"
+	{
+		var result = [];
+		var gouppingValue = "";
+		var indexOfExistingKey = 0;
+
+		for (var item in array) {
+			// Calculate value by which groupping is done
+			gouppingValue = grouppingFunc(item);
+			// Find a group in the result with the same key, if any exists
+			indexOfExistingKey = ArrayFind(result, function(group) { return group.key == gouppingValue ;} );
+
+			if (indexOfExistingKey) { 
+				// If a group with specified key already exists, add current item to it;
+				ArrayAppend(result[indexOfExistingKey].values, item);
+			} else {
+				// Else create a new group;
+				ArrayAppend(result, { key = gouppingValue, values = [item] });
+			}
+		}
+
+		return result;
+	}
+
 	/* NOT IMPLMENTED YET */
 	public any function Fold(required array array, required function predFunc, any accum)
 	description = "Applys predicate function to each element of array and adds results to accum (if it is provided)

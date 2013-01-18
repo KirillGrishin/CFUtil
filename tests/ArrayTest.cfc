@@ -53,6 +53,39 @@
 		assertEquals(variables.Array.Map([1,2,3],multiplyBy2),[2,4,6]);
 	}
 
+	public void function GroupByTest() {
+
+		var test1 = [
+			{ date = createDate(2013,1,15), name = "John", task = "Buy beer" },
+			{ date = createDate(2013,1,10), name = "John", task = "Order pizza" },
+			{ date = createDate(2013,1,15), name = "Nick", task = "Buy beer" },
+			{ date = createDate(2013,1,25), name = "Serge", task = "Orginize music" }
+		];
+
+		var testFunction1 = function(struct) {
+			return struct.date;
+		};
+
+		var expected1 = [
+			{ key = createDate(2013,1,15), values = [
+				{ date = createDate(2013,1,15), name = "John", task = "Buy beer" },
+				{ date = createDate(2013,1,15), name = "Nick", task = "Buy beer" }
+			]},
+
+			{ key = createDate(2013,1,10), values = [
+				{ date = createDate(2013,1,10), name = "John", task = "Order pizza" }
+			]},
+
+			{ key = createDate(2013,1,25), values = [
+				{ date = createDate(2013,1,25), name = "Serge", task = "Orginize music" }
+			]}
+
+		];
+
+		assertEquals(variables.Array.GroupBy(test1,testFunction1),expected1);
+
+	}
+
 	public void function FoldTest() {
 		fail("The function Array.Fold() is not implemented.");
 	}
